@@ -1,93 +1,161 @@
 import React,{Component, useEffect, useState}  from "react";
 import { Instrument } from "../Instruments"
 import "./Drums.css"
+import * as Tone from 'tone';
 function Drums()
 {
     const [audio,setaudio] = useState("");
     const [playAudio,setPlayAudio] = useState(false);
-    const audioPlayer = new Audio(audio);
+    const tonePlayers=[new Tone.Player("/drumsounds/clap.wav"),new Tone.Player("/drumsounds/crash.wav"),new Tone.Player("/drumsounds/open-hihat.wav"),new Tone.Player("/drumsounds/kick.wav"),new Tone.Player("/drumsounds/snare.wav"),new Tone.Player("/drumsounds/closed-hihat.wav")]
     useEffect(()=>{
-        document.addEventListener('keydown', (keyPressed) => {
-            if(keyPressed.key=="w")
-            {
-            setaudio("/drumsounds/clap.wav");
-            setPlayAudio(true);
-            }
-            if(keyPressed.key=="a")
-            {
-            setaudio("/drumsounds/crash.wav");
-            setPlayAudio(true);
-            }
-            if(keyPressed.key=="s")
-            {
-            setaudio("/drumsounds/open-hihat.wav");
-            setPlayAudio(true);
-            }
-            if(keyPressed.key=="d")
-            {
-            setaudio("/drumsounds/kick.wav");
-            setPlayAudio(true);
-            }
-            if(keyPressed.key=="o")
-            {
-            setaudio("/drumsounds/snare.wav");
-            setPlayAudio(true);
-            }
-            if(keyPressed.key=="p")
-            {
-            setaudio("/drumsounds/closed-hihat.wav");
-            setPlayAudio(true);
-            }
-          }, false);
-        document.addEventListener('keyup',()=>{
-            setPlayAudio(false);
-        })
+            
         if(playAudio && audio!="")
         {
-        audioPlayer.play().then(()=>{
+            tonePlayers[0].playbackRate=1;
+            tonePlayers[0].fadeIn=0;
+            tonePlayers[0].toDestination();
+            tonePlayers[0].autostart=true;
+        /*audioPlayer.play().then(()=>{
             setPlayAudio(false);
-        });
+        });*/
+        setPlayAudio(false);
         }
         //audioPlayer.play();
     },[playAudio]);
     return(
         <body tabIndex={0}>
             <div className="drumkit">
+                <div className="padcontainer">
                 <div className="pad"  onClick={()=>{
                     setaudio("/drumsounds/clap.wav");
                     setPlayAudio(true);
                 }}>
-                    <img src="/icons/clap.png" alt="clap"/>
+                    <img className="icon" src="/icons/clap.png" alt="clap"/>
                 </div>
+                <label>Fade In</label>
+                <input type="range" min="0" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Fade Out</label>
+                    <input type="range" min="0" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Playback Rate</label>
+                    <input type="range" min="1" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Loop</label>
+                    <input type="checkbox"/>
+                    </div>
+                    <div className="padcontainer">
                 <div className="pad"  onClick={()=>{
                     setaudio("/drumsounds/crash.wav");
                     setPlayAudio(true);
                 }}>
-                <img src="/icons/crash.png" alt="crash"/>
+                <img className="icon" src="/icons/crash.png" alt="crash"/>
                 </div>
+                    <label>Fade In</label>
+                <input type="range" min="0" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Fade Out</label>
+                    <input type="range" min="0" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Playback Rate</label>
+                    <input type="range" min="1" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Loop</label>
+                    <input type="checkbox"/>
+                </div>
+                <div className="padcontainer">
                 <div className="pad" onClick={()=>{
                     setaudio("/drumsounds/open-hihat.wav");
                     setPlayAudio(true);
                 }}>
-                <img src="/icons/open-hihat.png" alt="open-hihat"/>
+                <img className="icon" src="/icons/open-hihat.png" alt="open-hihat"/>
                 </div>
+                    <label>Fade In</label>
+                <input type="range" min="0" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Fade Out</label>
+                    <input type="range" min="0" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Playback Rate</label>
+                    <input type="range" min="1" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Loop</label>
+                    <input type="checkbox"/>
+                </div>
+                <div className="padcontainer">
                 <div className="pad" onClick={()=>{
                     setaudio("/drumsounds/kick.wav");
                     setPlayAudio(true);
                 }}>
-                <img src="/icons/kick.png" alt="kick"/>
+                <img className="icon" src="/icons/kick.png" alt="kick"/>
                 </div>
+                    <label>Fade In</label>
+                <input type="range" min="0" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Fade Out</label>
+                    <input type="range" min="0" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Playback Rate</label>
+                    <input type="range" min="1" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Loop</label>
+                    <input type="checkbox"/>
+                </div>
+                <div className="padcontainer">
                 <div className="pad" onClick={()=>{
                     setaudio("/drumsounds/snare.wav");
                     setPlayAudio(true);
                 }}>
-                <img src="/icons/snare.png" alt="snare"/>
+                <img className="icon" src="/icons/snare.png" alt="snare"/>
                 </div>
+                    <label>Fade In</label>
+                <input type="range" min="0" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Fade Out</label>
+                    <input type="range" min="0" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Playback Rate</label>
+                    <input type="range" min="1" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Loop</label>
+                    <input type="checkbox"/>
+                </div>
+                <div className="padcontainer">
                 <div className="pad" onClick={()=>{
                     setaudio("/drumsounds/closed-hihat.wav");
                     setPlayAudio(true);
                 }}>
-                <img src="/icons/closed-hihat.png" alt="closed-hihat"/>
+                <img className="icon" src="/icons/closed-hihat.png" alt="closed-hihat"/>
+                </div>
+                    <label>Fade In</label>
+                <input type="range" min="0" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Fade Out</label>
+                    <input type="range" min="0" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Playback Rate</label>
+                    <input type="range" min="1" max="5" onChange={(value)=>{
+                        console.log(value.target.value);
+                    }}/>
+                    <label>Loop</label>
+                    <input type="checkbox"/>
                 </div>
             </div>
         </body>
