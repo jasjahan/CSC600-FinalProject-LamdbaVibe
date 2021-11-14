@@ -5,7 +5,7 @@ import { DrumsInstrument } from './instruments/Drums';
 // project dependencies
 import { PianoInstrument } from './instruments/Piano';
 import { WaveformVisualizer } from './visualizers/Waveform';
-
+import { CircleVisualizer } from './visualizers/thaoHo618'; 
 /** ------------------------------------------------------------------------ **
  * The entire application state is stored in AppState.
  ** ------------------------------------------------------------------------ */
@@ -19,7 +19,7 @@ import { WaveformVisualizer } from './visualizers/Waveform';
 export type AppState = Map<string, any>;
 
 const instruments = List([PianoInstrument,DrumsInstrument]);
-const visualizers = List([WaveformVisualizer]);
+const visualizers = List([WaveformVisualizer,CircleVisualizer]);
 export const defaultState: AppState = Map<string, any>({
   instruments,
   visualizers,
