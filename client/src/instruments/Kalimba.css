@@ -1,0 +1,12 @@
+.page {
+    display: flex;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif;
+    background-color: violet;
+}
+
+.kalimba {
+    display: flex;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif;
+}

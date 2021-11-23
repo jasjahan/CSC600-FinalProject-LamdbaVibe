@@ -6,7 +6,7 @@ import { FluteInstrument } from './instruments/Flute';
 // project dependencies
 import { PianoInstrument} from './instruments/Piano';
 import { XylophoneInstrument } from './instruments/Xylophone';
-
+import { KalimbaInstrument } from './instruments/thaoHo618';
 import { WaveformVisualizer } from './visualizers/Waveform';
 
 import { CircleVisualizer } from './visualizers/thaoHo618'; 
@@ -26,7 +26,7 @@ import { BarCircleVisualizer} from './visualizers/KshitizSareen';
 export type AppState = Map<string, any>;
 
 
-const instruments = List([PianoInstrument,DrumsInstrument,XylophoneInstrument,FluteInstrument]);
+const instruments = List([PianoInstrument,DrumsInstrument,XylophoneInstrument,FluteInstrument,KalimbaInstrument]);
 const visualizers = List([WaveformVisualizer,CircleVisualizer,SpectrumVisualizer,StringVisualizer,BarCircleVisualizer]);
 export const defaultState: AppState = Map<string, any>({
   instruments,
