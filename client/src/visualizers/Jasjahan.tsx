@@ -21,7 +21,7 @@ export const SpectrumVisualizer = new Visualizer(
           const height = window.innerHeight / 2;
           const dim = Math.min(width, height);
            
-          p5.background("blue");
+          p5.background("black");
           p5.strokeWeight(dim * 0.01);
           p5.stroke(100, 250, 100, 255);
           p5.noFill();

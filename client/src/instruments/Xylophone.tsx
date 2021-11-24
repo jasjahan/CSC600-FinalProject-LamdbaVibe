@@ -1,78 +1,51 @@
-// 3rd party library imports
+/*
+    Author: Jasmine Jahan
+    GitHub Handle: jasjahan
+    Xylophone.tsx: Adding Xylophone Instrument
+*/
+
 import * as Tone from 'tone';
-import classNames from 'classnames';
-import { List, Range } from 'immutable';
-import React from 'react';
-import styles from './Xylo.module.css'; // Import css modules stylesheet as styles
+import styles from './Xylo.module.css'; 
+import { Instrument } from "../Instruments"
 
 
-// project imports
-import { Instrument, InstrumentProps } from '../Instruments';
+function Xylophone(){
+    const tonePlayers = ['/XyloSounds/c.wav', 
+                        '/XyloSounds/d1.wav',
+                        '/XyloSounds/e1.wav',
+                        '/XyloSounds/f.wav',
+                        '/XyloSounds/g.wav',
+                        '/XyloSounds/a.wav',
+                        '/XyloSounds/b.wav',
+                        '/XyloSounds/c2.wav']
 
+    const names = ['c', 'd1', 'e1', 'f', 'g', 'a', 'b', 'c2']
+    
 
-const PlayButton = (props:any)=>{
+  function ExecuteSound(index: any) : void {
+      const tonePlayer = new Tone.Player(tonePlayers[index]);
+      tonePlayer.autostart=true;
+      tonePlayer.toDestination();
+    }
 
-    return(
-        <button 
-         className = {styles.playbutton}
-         style = {{height: ( 200 - (15 * props.index )) + 'px'}}
-         onClick= {()=> new Audio(props.notes.file).play()}> 
-
-         <div className = {styles.circle}/>
-            {props.notes.name} 
-         <div className = {styles.circle}/>
-        </button>
-    );
-}
-
-export function Xylophone() {
-
-    const notes = [
-                            
-        {
-            name: 'c',
-            file: '/XyloSounds/c.wav'
-          },
-          {
-            name: 'd1',
-            file: '/XyloSounds/d1.wav'
-          },
-          {
-            name: 'e1',
-            file: '/XyloSounds/e1.wav'
-          },
-          {
-            name: 'f',
-            file: '/XyloSounds/f.wav'
-          },
-          {
-            name: 'g',
-            file: '/XyloSounds/g.wav'
-          },
-          {
-            name: 'a',
-            file: '/XyloSounds/a.wav'
-          },
-          {
-            name: 'b',
-            file: '/XyloSounds/b.wav'
-          },
-          {
-            name: 'c2',
-            file: '/XyloSounds/c2.wav'
-          },                  ]; 
-
-                         
-    return (
-    <body > 
-           
-    <div className= {styles.page}>
-        <h1> Xylophone </h1>  
-        <li>  </li>
-        <div className= {styles.xylophone}>
-
-          {notes.map((notes,index)=> <PlayButton index = {index} key = {notes.name} notes = {notes} />)}
-
+        return(
+            <body tabIndex={0}>
+              <div className={styles.page}>
+                <h1>* Click on the keys to play *</h1> 
+                  {names.map((names, index, props:any)=>{
+                    return(
+                     <div className={styles.xylophone}>
+                         <button className={styles.playbutton} 
+                                 style = {{height: ( 200 - (15 * index )) + 'px'}}
+                                 onClick={()=>{ ExecuteSound(index);}}>
+                                    <div className = {styles.circle}/>
+                                        {names} 
+                                    <div className = {styles.circle}/>
+                          </button>
+                     </div>
+                     ) 
+                   })
+                  }
           {/* <PlayButton notes = {notes[0]}/>
           <PlayButton notes = {notes[1]}/>
           <PlayButton notes = {notes[2]}/>
@@ -90,10 +63,13 @@ export function Xylophone() {
           <button onClick = {()=> new Audio(notes[5].file).play()}>a</button>
           <button onClick = {()=> new Audio(notes[6].file).play()}>b</button>
           <button onClick = {()=> new Audio(notes[7].file).play()}>c2</button> */}
-        </div>
-      </div>
-     </body> 
-    );
-  }
+              </div>
+            </body>
+          )
+  };   
+
+
 export const XylophoneInstrument = new Instrument('Xylophone', Xylophone);
+
+
 
