@@ -11,6 +11,7 @@ import { DispatchAction } from './Reducer';
 import { SideNav } from './SideNav';
 import { VisualizerContainer } from './Visualizers';
 
+
 type PanelProps = {
   state: AppState;
   dispatch: React.Dispatch<DispatchAction>;
@@ -75,13 +76,13 @@ function ShowWelcome(): JSX.Element {
     <div
       className="absolute right-0 bottom-0 top-0 flex flex-column items-center justify-center"
       style={{ left: '16rem' }}
-    >
+    >  
       <div className="mw6 lh-copy mb4">
         <Music32 />
+        <input placeholder="Enter Song Title" ></input>
         <div className="f3 fw7 mb2">Welcome to the case study.</div>
         <div className="f4 mb3">
-          Select an instrument and a visualizer on the left to serve some fresh
-          beats.
+          Select an instrument and a visualizer on the left to serve some fresh beats.
         </div>
         <div className="f5">The UI is yours to design. Express yourself.</div>
       </div>
@@ -120,3 +121,4 @@ export function MainPage({ state, dispatch }: PanelProps): JSX.Element {
     </div>
   );
 }
+
