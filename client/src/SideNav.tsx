@@ -14,6 +14,7 @@ import { DispatchAction } from './Reducer';
 import { AppState } from './State';
 import { Instrument } from './Instruments';
 import { Visualizer } from './Visualizers';
+import { send } from './Socket';
 
 
 /** ------------------------------------------------------------------------ **
@@ -110,8 +111,15 @@ function Songs({ state, dispatch }: SideNavProps): JSX.Element {
         <div
           key={song.get('id')}
           className="f6 pointer underline flex items-center no-underline i dim"
-          onClick={() =>
+          onClick={async () =>
+            {
+            //console.log(song.get('songT'))
             dispatch(new DispatchAction('PLAY_SONG', { id: song.get('id') }))
+            const socket = state.get('socket');
+            const {SongDetails} = await send(socket,'get_song_details',{});
+            console.log(SongDetails);
+            dispatch(new DispatchAction('SHOW_SONG_DETAILS',{SongDetails}));
+            }
           }
         >
           <Music20 className="mr1" />
@@ -120,6 +128,24 @@ function Songs({ state, dispatch }: SideNavProps): JSX.Element {
       ))}
     </Section>
   );
+}
+
+function SongDetails({state,dispatch} : SideNavProps) : JSX.Element{
+
+  const SongDetails : List<any> = state.get('SongDetails',List());
+
+  return(
+    <Section title="Song Details">
+      {SongDetails.map(songDetail => (
+        <div
+          key={songDetail.get('albumId')}
+          className="f6 pointer underline flex items-center no-underline i dim"
+        >
+          {songDetail.get('albumTitle')}
+        </div>
+      ))}
+    </Section>
+  )
 }
 
 export function SideNav({ state, dispatch }: SideNavProps): JSX.Element {
@@ -132,6 +158,7 @@ export function SideNav({ state, dispatch }: SideNavProps): JSX.Element {
         <Instruments state={state} dispatch={dispatch} />
         <Visualizers state={state} dispatch={dispatch} />
         <Songs state={state} dispatch={dispatch} />
+        <SongDetails state={state} dispatch={dispatch} />
       </div>
     </div>
   );

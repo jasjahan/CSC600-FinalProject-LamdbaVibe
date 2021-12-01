@@ -30,6 +30,7 @@ export class MessageHandler {
       }
 
       try {
+        console.log(obj);
         const success = await this.onMessage(obj, socket);
         if (success) {
           const { _id } = obj;

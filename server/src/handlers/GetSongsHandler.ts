@@ -1,10 +1,14 @@
 import { DB } from '../Database';
 import { MessageHandler } from '../MessageHandler';
 
-async function onMessage(): Promise<any> {
+async function onMessage(msg: any): Promise<any> {
   const songs = await DB.runQuery('get_songs');
 
   console.log('songs message');
+
+  console.log(songs);
+
+  console.log(msg);
 
   return { songs };
 }

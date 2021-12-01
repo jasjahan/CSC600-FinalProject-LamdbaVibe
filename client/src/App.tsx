@@ -28,7 +28,8 @@ function App() {
     initializeSocket(
       async socket => {
         dispatch(new DispatchAction('SET_SOCKET', { socket }));
-        const { songs } = await send(socket, 'get_songs', {});
+        const { songs } = await send(socket, 'get_songs',{});
+        //console.log(songs);
         dispatch(new DispatchAction('SET_SONGS', { songs }));
       },
       () => {

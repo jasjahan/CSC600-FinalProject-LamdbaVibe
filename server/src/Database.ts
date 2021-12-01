@@ -37,6 +37,7 @@ export class DB {
 
   private static async initializeDB(): Promise<Database> {
     const existsAlready = await DB.exists();
+    console.log(existsAlready);
     const db = new sqlite3.Database(DB.DB_PATH);
 
     if (!existsAlready && !this.hasInitialized) {
