@@ -1,7 +1,7 @@
 // 3rd party
 import { List, Map } from 'immutable';
 import { DrumsInstrument } from './instruments/Drums';
-import { FluteInstrument } from './instruments/Flute';
+import { WindInstruments } from './instruments/WindInstruments';
 
 // project dependencies
 import { PianoInstrument} from './instruments/Piano';
@@ -26,7 +26,7 @@ import { BarCircleVisualizer} from './visualizers/KshitizSareen';
 export type AppState = Map<string, any>;
 
 
-const instruments = List([PianoInstrument,DrumsInstrument,XylophoneInstrument,FluteInstrument,KalimbaInstrument]);
+const instruments = List([PianoInstrument,DrumsInstrument,XylophoneInstrument,WindInstruments,KalimbaInstrument]);
 const visualizers = List([WaveformVisualizer,CircleVisualizer,SpectrumVisualizer,StringVisualizer,BarCircleVisualizer]);
 export const defaultState: AppState = Map<string, any>({
   instruments,

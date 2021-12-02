@@ -20,17 +20,16 @@ export const StringVisualizer = new Visualizer(
         const height = window.innerHeight / 2;
         
         p5.background(0, 0, 0, 210); 
-        p5.stroke(255,0,127);
-        p5.strokeWeight(3) 
+        p5.stroke('rgba(100%,0%,100%,0.5)');
+        p5.strokeWeight(3)
         p5.noFill(); 
-
         p5.beginShape();
 
         const values = analyzer.getValue(); 
         values.forEach((val, i) => {
           let amp = values[i] as number
           let x = p5.map(i * 500 , values.length - 1, 0, p5.height, 0)
-          let y = height / 4 + amp * height
+          let y = height / 8 + amp * height
           p5.vertex(x,y)
         });
 
