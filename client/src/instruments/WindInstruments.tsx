@@ -111,7 +111,7 @@ function WindInstrument()
             tonePlayer.connect(Reverb);
         }
 
-        if(properties[index].steroe>=0)
+        if(properties[index].stereo>=0)
         {
             const Stereo = new Tone.StereoWidener(properties[index].steroe/2).toDestination();
             tonePlayer.connect(Stereo);
