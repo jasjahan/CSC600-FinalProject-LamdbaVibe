@@ -113,7 +113,7 @@ function WindInstrument()
 
         if(properties[index].stereo>=0)
         {
-            const Stereo = new Tone.StereoWidener(properties[index].steroe/2).toDestination();
+            const Stereo = new Tone.StereoWidener(properties[index].stereo).toDestination();
             tonePlayer.connect(Stereo);
         }
 
@@ -170,11 +170,11 @@ function WindInstrument()
                         }))
                     }}/>
                     <label>Stereo</label>
-                    <input type="range" min="0" step={1} max="2" value={properties[index].steroe} onChange={(value)=>{
+                    <input type="range" min="0" step={1} max="2" value={properties[index].stereo} onChange={(value)=>{
                         setProperties(properties.map((property,propertyIndex)=>{
                             if(propertyIndex===index)
                             {
-                            property.steroe=Number.parseInt(value.target.value);
+                            property.stereo=Number.parseInt(value.target.value);
                             }
                             return(
                                 property
