@@ -98,8 +98,8 @@ export function appReducer(state: AppState, action: DispatchAction): AppState {
       }
 
       case 'SHOW_SONG_DETAILS':{
-        const SongDetails = args.get('SongDetails');
-        return state.set('SongDetails',SongDetails);
+        const SongDetail = args.get('SongDetail');
+        return state.set('SongDetail',SongDetail);
       }
       default:
         console.error(`type unknown: ${type}\n`, args.toJS());
