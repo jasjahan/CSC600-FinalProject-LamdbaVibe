@@ -46,17 +46,32 @@ CREATE TABLE songs (
 );
 
 -- INSERT Statements
-INSERT INTO songs 
-VALUES (1, 'Ode to Joy (Dubstep Remix)', 'E4 E4 F4 G4 G4 F4 E4 D4 C4 C4 D4 E4 E4 D4 D4',1,1,1,1);
+INSERT INTO songs VALUES (1, 'Ode to Joy (Dubstep Remix)', 'E4 E4 F4 G4 G4 F4 E4 D4 C4 C4 D4 E4 E4 D4 D4',1,1,1,1);
 
-INSERT INTO songs
-VALUES (2, 'Ode to Joy (Dubstep Remix)', 'E4 E4 F4 G4 G4 F4 E4 D4 C4 C4 D4 E4 E4 D4 D4',1,1,1,1);
+INSERT INTO songs VALUES (2, 'Happy Birthday', 'G4 G4 A4 G4 C4 B4 G4 G4 G4 E4 C4 F4 F4 E4 C4 D4 C4',2,2,2,1);
 
-INSERT INTO genre
-VALUES (1, 'Test Genre');
+INSERT INTO songs VALUES (3, 'Twinkel Twinkel', 'C4 C4 G4 G4 A4 A4 G4 F4 F4 E4 E4 D4 D4 C4',3,3,3,1);
 
-INSERT INTO album
-VALUES (1,'Test album', 2010);
 
-INSERT INTO artist
-VALUES (1, 'Test Artist');
+
+INSERT INTO genre VALUES (1, 'GENRE : Poem');
+
+INSERT INTO album VALUES (1,'ALBUM : Wilco', 2010);
+
+INSERT INTO artist VALUES (1, ' ARTIST : Ludwig van Beethoven');
+
+
+INSERT INTO genre VALUES (2, 'GENRE : Childrens Music');
+
+INSERT INTO album VALUES (2,'ALBUM : Cage', 2011);
+
+INSERT INTO artist VALUES (2, ' ARTIST : RR Forman');
+
+
+INSERT INTO genre VALUES (3, 'GENRE : Lullaby');
+
+INSERT INTO album VALUES (3,'ALBUM : The Star', 1806);
+
+INSERT INTO artist VALUES (3, 'ARTIST : Jane Taylor');
+
+
