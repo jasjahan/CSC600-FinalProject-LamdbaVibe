@@ -1,7 +1,7 @@
 // 3rd party
 import { List, Map } from 'immutable';
 import { DrumsInstrument } from './instruments/Drums';
-import { WindInstruments } from './instruments/WindInstruments';
+import { WindInstruments } from './instruments/sroy97';
 
 // project dependencies
 import { PianoInstrument} from './instruments/Piano';
