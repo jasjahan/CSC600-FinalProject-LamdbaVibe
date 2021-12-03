@@ -6,72 +6,45 @@ import * as Tone from 'tone';
 import { Visualizer } from '../Visualizers';
 
 export const BarCircleVisualizer = new Visualizer(
-  'Bar Circle Waveform',
+  '3D Waveform',
   (p5: P5, analyzer: Tone.Analyser) => {
 
     const width = window.innerWidth;
     const height = window.innerHeight / 2;
-    const dim = Math.min(width, height);
 
-    const colors = [
+      p5.background(250, 250, 250, 255);
+
+      const values = analyzer.getValue();
+      p5.beginShape();
+      p5.rotateY(p5.frameCount * 0.01);
+      p5.rotateX(p5.frameCount*0.01);
+      let startx=0;
+      let starty=0;
+      let startz=0;
+      for (let i = 0; i < values.length; i++) {
+        const amplitude = values[i] as number;
+        const x = p5.map(i, 0, values.length - 1, 0, width)-width/2;
+        const y = (height / 2 + amplitude * height)-height/2;
+        // Place vertex
+        if(i%2==0)
         {
-            red : 255,
-            green: 51,
-            blue: 51,
-        },
-        {
-            red : 51,
-            green: 51,
-            blue: 255,
-        },
-        {
-            red : 255,
-            green: 51,
-            blue: 153,
-        },
-        {
-            red : 255,
-            green: 51,
-            blue: 51,
-        },
-        {
-            red : 102,
-            green: 255,
-            blue: 178,
-        },
-        {
-            red : 255,
-            green: 255,
-            blue: 153,
+        p5.translate(x-startx,y-starty,(0.1*i)-startz);
+        startz=i*0.1;
         }
-    ]
-
-    p5.background(0, 0, 0, 255);
-
-    p5.strokeWeight(dim * 0.01);
-    p5.stroke(255, 255, 255, 255);
-    p5.noFill();
-    
-    const values = analyzer.getValue();
-    p5.beginShape();
-    const spacing = width/ values.length;
-    let i=0;
-    while(i<values.length) {
-        let sumAmplitude = 0;
-      for(let j=i;j<i+5;j++)
-      {
-          sumAmplitude+=values[j] as number;
+        else
+        {
+            p5.translate(x-startx,y-starty,(-0.1*i)-startz);
+            startz=i*-0.1;
+        }
+        p5.push();
+      p5.sphere(8, 6, 4);
+      p5.pop();
+      startx=x;
+      starty=y;
       }
-      sumAmplitude = sumAmplitude < 0 ? -sumAmplitude : sumAmplitude;
-      sumAmplitude=Math.min(sumAmplitude,0.5);
-      let randomIndex  = Math.floor(Math.random()*5);
-      p5.fill(colors[randomIndex].red,colors[randomIndex].green,colors[randomIndex].blue,255);
-      p5.rect(i*spacing, height *0.8, spacing*5, -(sumAmplitude * height/4));
-      p5.rect(i*spacing,height*0.2,spacing*5,sumAmplitude*height/4);
-      p5.circle(width/2.5,height/2,sumAmplitude*height/2);
-      i+=5;
-      //p5.vertex(x, y);
+      p5.endShape();
     }
-    p5.endShape();
-  },
+
+   // p5.endShape();
+
 );
