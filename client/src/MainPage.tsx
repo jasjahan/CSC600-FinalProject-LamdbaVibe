@@ -187,7 +187,10 @@ function ShowSongs({ state, dispatch }: PanelProps) : JSX.Element {
 
 }
 </div> 
-<div>
+<div style={{
+        marginTop: '1%',
+      }}>
+        Oscillators
         {oscillators.map(o => (
           <div
           className="f6 pointer underline items-center no-underline i dim"
