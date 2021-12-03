@@ -12,25 +12,26 @@ import * as Tone from 'tone';
 // project imports
 import { Visualizer } from '../Visualizers';
 
-export const StringVisualizer = new Visualizer(
-    'String Waveform',
+export const EllipticalVisualizer = new Visualizer(
+    'Elliptical Nebular Waveform',
     (p5: P5, analyzer: Tone.Analyser) => {
     
         const width = window.innerWidth;
         const height = window.innerHeight / 2;
         
         p5.background(0, 0, 0, 210); 
-        p5.stroke('rgba(100%,0%,100%,0.5)');
-        p5.strokeWeight(3)
+        p5.stroke(255,0,127);
+        p5.strokeWeight(3) 
         p5.noFill(); 
-        p5.beginShape();
 
         const values = analyzer.getValue(); 
+
+        p5.beginShape();
+
         values.forEach((val, i) => {
-          let amp = values[i] as number
-          let x = p5.map(i * 500 , values.length - 1, 0, p5.height, 0)
-          let y = height / 8 + amp * height
-          p5.vertex(x,y)
+          const amp = values[i] as number
+          p5.ellipse(600, 200, 300 + width * amp, 150 + height * amp);
+          p5.ellipse(600, 200, 150 + height * amp, 300 + width * amp);
         });
 
         p5.endShape();
