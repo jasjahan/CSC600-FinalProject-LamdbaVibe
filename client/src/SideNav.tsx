@@ -184,17 +184,77 @@ function SongDetails({state,dispatch} : SideNavProps) : JSX.Element{
   )
 }
 
+function Albums({state,dispatch} : SideNavProps) : JSX.Element
+{
+  const Albums : List<any> = state.get('Albums',List());
+  console.log(Albums);
+  return(
+    <Section title="Albums">
+      {
+        Albums.map((album,index)=>{
+          return(
+            <div 
+            key={album.get('albumID')}
+            className="f6 pointer underline items-center no-underline i dim"
+            onClick={()=>{
+              dispatch(new DispatchAction('SET_ALBUM_SONGS',{index,Albums}));
+            }}
+            >
+              {
+              album.get('albumTitle')
+              }
+            </div>
+
+          )
+        })
+      }
+    </Section>
+  )
+}
+
+function Genres({state,dispatch} : SideNavProps) : JSX.Element
+{
+  const Genres : List<any> = state.get('Genres',List());
+  console.log(Genres);
+  return(
+    <Section title="Genres">
+      {
+        Genres.map((genre,index)=>{
+          return(
+            <div 
+            key={genre.get('genreId')}
+            className="f6 pointer underline items-center no-underline i dim"
+            onClick={()=>{
+              dispatch(new DispatchAction('SET_GENRE_SONGS',{index,Genres}));
+            }}
+            >
+              {
+              genre.get('genreDescription')
+              }
+            </div>
+
+          )
+        })
+      }
+    </Section>
+  )
+}
+
 export function SideNav({ state, dispatch }: SideNavProps): JSX.Element {
   return (
     <div className="absolute top-0 left-0 bottom-0 w5 z-1 shadow-1 bg-white flex flex-column">
       <div className="h3 fw7 f5 flex items-center pl3 bb b--light-gray">
         Nameless App
       </div>
-      <div className="flex-auto">
+      <div className="flex-auto" style={{
+        overflow: 'scroll'
+      }}>
         <Instruments state={state} dispatch={dispatch} />
         <Visualizers state={state} dispatch={dispatch} />
         <Songs state={state} dispatch={dispatch} />
         <SongDetails state={state} dispatch={dispatch} />
+        <Albums state={state} dispatch={dispatch} />
+        <Genres state={state} dispatch={dispatch} />
       </div>
     </div>
   );

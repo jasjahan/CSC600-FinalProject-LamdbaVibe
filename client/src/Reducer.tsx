@@ -30,7 +30,11 @@ type DispatchActionType =
   | 'PLAY_SONG'
   | 'STOP_SONG'
   | 'SET_LOCATION'
-  | 'SHOW_SONG_DETAILS';
+  | 'SHOW_SONG_DETAILS' 
+  | 'SET_ALBUMS'
+  | 'SET_ALBUM_SONGS'
+  | 'SET_GENRES'
+  | 'SET_GENRE_SONGS';
 
 export class DispatchAction {
   readonly type: DispatchActionType;
@@ -101,6 +105,31 @@ export function appReducer(state: AppState, action: DispatchAction): AppState {
         const SongDetail = args.get('SongDetail');
         return state.set('SongDetail',SongDetail);
       }
+
+      case 'SET_ALBUMS':{
+        let Albums : List<any> = args.get('albums',List());
+        console.log(Albums);
+        return state.set('Albums',Albums);
+      }
+
+      case 'SET_ALBUM_SONGS':{
+        let Albums : List<any> =args.get('Albums',List())
+        let index : number = args.get('index',Number);
+        return state.set('FilteredSongs',Albums.get(index).get('songs'));
+      }
+
+      case 'SET_GENRES':{
+        let Genres : List<any> = args.get('genres',List());
+        console.log(Genres);
+        return state.set('Genres',Genres);
+      }
+
+      case 'SET_GENRE_SONGS':{
+        let Genres : List<any> = args.get('Genres',List());
+        let index: number = args.get('index',Number);
+        return state.set('FilteredSongs',Genres.get(index).get('songs'));
+      }
+
       default:
         console.error(`type unknown: ${type}\n`, args.toJS());
         return state;

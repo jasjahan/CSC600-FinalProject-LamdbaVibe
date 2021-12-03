@@ -10,6 +10,7 @@ import { AppState } from './State';
 import { DispatchAction } from './Reducer';
 import { SideNav } from './SideNav';
 import { VisualizerContainer } from './Visualizers';
+import { List } from 'immutable';
 
 
 type PanelProps = {
@@ -71,7 +72,7 @@ function InstrumentAndVisualizer({ state, dispatch }: PanelProps): JSX.Element {
   );
 }
 
-function ShowWelcome(): JSX.Element {
+function ShowWelcome({ state, dispatch }: PanelProps): JSX.Element {
   return (
     <div
       className="absolute right-0 bottom-0 top-0 flex flex-column items-center justify-center"
@@ -85,9 +86,46 @@ function ShowWelcome(): JSX.Element {
           Select an instrument and a visualizer on the left to serve some fresh beats.
         </div>
         <div className="f5">The UI is yours to design. Express yourself.</div>
+        <ShowSongs state={state} dispatch={dispatch}/>
       </div>
     </div>
   );
+}
+
+function ShowSongs({ state, dispatch }: PanelProps) : JSX.Element {
+
+  const FilteredSongs : List<any> = state.get('FilteredSongs',List());
+  return(
+    <div 
+    style={{
+      display: 'flex',
+      flexDirection: 'row',
+    }}
+    >
+      <div style={{
+        marginTop: '1%',
+      }}>
+        Songs List
+      {
+       FilteredSongs != undefined ?
+       FilteredSongs.map(song=>{
+         return(
+           <div
+           className="f6 pointer underline items-center no-underline i dim"
+            onClick={()=>{
+            dispatch(new DispatchAction('PLAY_SONG', { id: song.get('id') }))
+           }}>
+             {
+               song.get('songTitle')
+             }
+             </div>
+         )
+       }) : null
+
+}
+</div> 
+    </div>
+  )
 }
 
 /** ------------------------------------------------------------------------ **
@@ -114,7 +152,7 @@ export function MainPage({ state, dispatch }: PanelProps): JSX.Element {
     >
       <SideNav state={state} dispatch={dispatch} />
       {isWelcome ? (
-        <ShowWelcome />
+        <ShowWelcome state={state} dispatch={dispatch}/>
       ) : (
         <InstrumentAndVisualizer state={state} dispatch={dispatch} />
       )}

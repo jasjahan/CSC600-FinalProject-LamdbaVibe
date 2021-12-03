@@ -52,6 +52,8 @@ INSERT INTO songs VALUES (2, 'Happy Birthday', 'G4 G4 A4 G4 C4 B4 G4 G4 G4 E4 C4
 
 INSERT INTO songs VALUES (3, 'Twinkel Twinkel', 'C4 C4 G4 G4 A4 A4 G4 F4 F4 E4 E4 D4 D4 C4',3,3,3,1);
 
+INSERT INTO songs VALUES (4, 'Twinkel Twinkel', 'C4 C4 G4 G4 A4 A4 G4 F4 F4 E4 E4 D4 D4 C4',1,1,1,1);
+
 
 
 INSERT INTO genre VALUES (1, 'GENRE : Poem');
