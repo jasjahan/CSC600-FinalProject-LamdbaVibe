@@ -1,5 +1,5 @@
 // 3rd party library imports
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import * as Tone from 'tone';
 import { Music32 } from '@carbon/icons-react';
@@ -94,12 +94,75 @@ function ShowWelcome({ state, dispatch }: PanelProps): JSX.Element {
 
 function ShowSongs({ state, dispatch }: PanelProps) : JSX.Element {
 
+  const oscillators: List<OscillatorType> = List([
+    'sine',
+    'sawtooth',
+    'square',
+    'triangle',
+    'fmsine',
+    'fmsawtooth',
+    'fmtriangle',
+    'amsine',
+    'amsawtooth',
+    'amtriangle',
+  ]) as List<OscillatorType>;
+
+
+  const [synth, setSynth] = useState(
+    new Tone.Synth({
+      oscillator: { type: 'amsawtooth' } as Tone.OmniOscillatorOptions,
+    }).toDestination(),
+  );
+  
+
+  const notes = state.get('notes');
+
+  useEffect(() => {
+    if (notes && synth) {
+      let eachNote = notes.split(' ');
+      let noteObjs = eachNote.map((note: string, idx: number) => ({
+        idx,
+        time: `+${idx / 4}`,
+        note,
+        velocity: 1,
+      }));
+
+      new Tone.Part((time, value) => {
+        // the value is an object which contains both the note and the velocity
+        synth.triggerAttackRelease(value.note, '4n', time, value.velocity);
+        if (value.idx === eachNote.length - 1) {
+          dispatch(new DispatchAction('STOP_SONG'));
+        }
+      }, noteObjs).start(0);
+
+      Tone.Transport.start();
+
+      return () => {
+        Tone.Transport.cancel();
+      };
+    }
+
+    return () => {};
+  }, [notes, synth, dispatch]);
+
+  const setOscillator = (newType: Tone.ToneOscillatorType) => {
+    setSynth(oldSynth => {
+      oldSynth.disconnect();
+
+      return new Tone.Synth({
+        oscillator: { type: newType } as Tone.OmniOscillatorOptions,
+      }).toDestination();
+    });
+  };
+
+
   const FilteredSongs : List<any> = state.get('FilteredSongs',List());
   return(
     <div 
     style={{
       display: 'flex',
       flexDirection: 'row',
+      justifyContent: 'space-between'
     }}
     >
       <div style={{
@@ -124,6 +187,21 @@ function ShowSongs({ state, dispatch }: PanelProps) : JSX.Element {
 
 }
 </div> 
+<div>
+        {oscillators.map(o => (
+          <div
+          className="f6 pointer underline items-center no-underline i dim"
+          onClick={() => setOscillator(o)}
+          style={{
+            margin: '1%'
+          }}
+          >
+            {
+              o
+            }
+            </div>
+        ))}
+      </div>
     </div>
   )
 }

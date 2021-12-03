@@ -68,9 +68,7 @@ export const BarCircleVisualizer = new Visualizer(
       p5.fill(colors[randomIndex].red,colors[randomIndex].green,colors[randomIndex].blue,255);
       p5.rect(i*spacing, height *0.8, spacing*5, -(sumAmplitude * height/4));
       p5.rect(i*spacing,height*0.2,spacing*5,sumAmplitude*height/4);
-      //p5.circle(width/2.5,height/2,sumAmplitude*height/2);
-      p5.triangle(width/2.5-(sumAmplitude*width/2),height*0.75,width/2.5+(sumAmplitude*width/2),height*0.75,width/2.5,height/2-sumAmplitude*height);
-      p5.triangle(width/2.5-(sumAmplitude*width/2),height*0.25,width/2.5+(sumAmplitude*width/2),height*0.25,width/2.5,height/2+sumAmplitude*height);
+      p5.circle(width/2.5,height/2,sumAmplitude*height/2);
       i+=5;
       //p5.vertex(x, y);
     }
