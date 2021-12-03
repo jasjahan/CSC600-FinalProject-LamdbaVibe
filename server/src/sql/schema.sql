@@ -36,13 +36,13 @@ CREATE TABLE songs (
 	fk_genreid INT, 
 	fk_albumid INT, 
 	fk_artistid INT,
-	song_length INT NULL,
-	foreign_keys (genre) references genre(genre_id)
-	ON DELETE SET NULL ON UPDATE CASCADE,
-	foreign_keys (album) references album(album_id)
-	ON DELETE SET NULL ON UPDATE CASCADE,
-	foreign_keys (artist) references artist(artist_id)
-	ON DELETE SET NULL ON UPDATE CASCADE
+	song_length INT 
+-- 	foreign_keys (genre) references genre(genre_id)
+-- 	ON DELETE SET NULL ON UPDATE CASCADE,
+-- 	foreign_keys (album) references album(album_id)
+-- 	ON DELETE SET NULL ON UPDATE CASCADE,
+-- 	foreign_keys (artist) references artist(artist_id)
+-- 	ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- INSERT Statements
