@@ -5,7 +5,7 @@ import { WindInstruments } from './instruments/sroy97';
 
 // project dependencies
 import { PianoInstrument} from './instruments/Piano';
-import { XylophoneInstrument } from './instruments/Xylophone';
+import { XylophoneInstrument } from './instruments/JasJahan';
 import { KalimbaInstrument } from './instruments/thaoHo618';
 import { WaveformVisualizer } from './visualizers/Waveform';
 
