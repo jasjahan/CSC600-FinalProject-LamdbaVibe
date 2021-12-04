@@ -1,7 +1,7 @@
 /*
     Author: Jasmine Jahan
     GitHub Handle: jasjahan
-    Jasjahan.tsx: Adding a 3D Shape Visualizer
+    JasJahan_3D.tsx: Adding a 3D Shape Visualizer
 */
 
 import P5 from 'p5';
