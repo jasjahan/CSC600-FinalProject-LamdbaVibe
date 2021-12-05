@@ -12,7 +12,6 @@ import { BoxVisualizer } from './visualizers/JasJahan_3D';
 
 
 import { CircleVisualizer } from './visualizers/thaoHo618'; 
-import { SpectrumVisualizer} from './visualizers/Jasjahan_Spectrum';
 import { EllipticalVisualizer } from './visualizers/sroy97';
 import { BarCircleVisualizer} from './visualizers/KshitizSareen';
 /** ------------------------------------------------------------------------ **
@@ -29,7 +28,7 @@ export type AppState = Map<string, any>;
 
 
 const instruments = List([PianoInstrument,DrumsInstrument,XylophoneInstrument,WindInstruments,KalimbaInstrument]);
-const visualizers = List([WaveformVisualizer,CircleVisualizer,SpectrumVisualizer,EllipticalVisualizer,BarCircleVisualizer,BoxVisualizer]);
+const visualizers = List([WaveformVisualizer,CircleVisualizer,EllipticalVisualizer,BarCircleVisualizer,BoxVisualizer]);
 export const defaultState: AppState = Map<string, any>({
   instruments,
   visualizers,
