@@ -7,6 +7,7 @@
 import * as Tone from 'tone';
 import styles from './Xylo.module.css'; 
 import { Instrument } from "../Instruments"
+import pan3 from '../../src/img/mallet.png';
 
 
 function Xylophone(){
@@ -31,7 +32,7 @@ function Xylophone(){
         return(
             <body tabIndex={0}>
               <div className={styles.page}>
-                <h1>* Click on the keys to play *</h1> 
+                <img src={pan3}  width={300}  height={250}  alt="NO IMG"/> 
                   {names.map((names, index, props:any)=>{
                     return(
                      <div className={styles.xylophone}>
