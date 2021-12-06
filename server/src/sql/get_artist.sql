@@ -1,1 +1,2 @@
-SELECT * FROM artist;
+SELECT *
+FROM artist;

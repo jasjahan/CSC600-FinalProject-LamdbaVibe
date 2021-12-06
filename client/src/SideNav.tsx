@@ -104,6 +104,40 @@ function Visualizers({ state }: SideNavProps): JSX.Element {
 }
 
 function Songs({ state, dispatch }: SideNavProps): JSX.Element {
+
+  async function setSongDetails(song: { get: (arg0: string) => any; })
+  {
+    const socket = state.get('socket');
+            const {SongDetails}  = await send(socket,'get_song_details',{});
+            const songGenre=song.get('fkGenreid');
+            const songAlbum=song.get('fkAlbumid');
+            const songArtist=song.get('fkArtistid');
+            let genre : string = "";
+            let album : string = "";
+            let artist: string = "";
+            for(let i=0;i<SongDetails.length;i++)
+            {
+              if(SongDetails[i].genreId===songGenre)
+              {
+                genre=SongDetails[i].genreDescription;
+              }
+              if(SongDetails[i].albumId===songAlbum)
+              {
+                album=SongDetails[i].albumTitle;
+              }
+              if(SongDetails[i].artistId===songArtist)
+              {
+                artist=SongDetails[i].artistName;
+              } 
+            }
+            const SongDetail={
+              genre: genre,
+              album: album,
+              artist: artist
+            }
+            dispatch(new DispatchAction('SHOW_SONG_DETAILS',{SongDetail}));
+  }
+
   const songs: List<any> = state.get('songs', List());
   return (
     <Section title="Playlist">
@@ -113,41 +147,8 @@ function Songs({ state, dispatch }: SideNavProps): JSX.Element {
           className="f6 pointer underline flex items-center no-underline i dim"
           onClick={async () =>
             {
-            //console.log(song.get('songT'))
             dispatch(new DispatchAction('PLAY_SONG', { id: song.get('id') }))
-            const socket = state.get('socket');
-            const {SongDetails}  = await send(socket,'get_song_details',{});
-            const songGenre=song.get('fkGenreid');
-            const songAlbum=song.get('fkAlbumid');
-            const songArtist=song.get('fkArtistid');
-            const songLength=song.get('songLength');
-            let genre : string = "";
-            let album : string = "";
-            let artist: string = "";
-            for(let i=0;i<SongDetails.length;i++)
-            {
-              if(SongDetails[i].genreId==songGenre)
-              {
-                genre=SongDetails[i].genreDescription;
-              }
-              if(SongDetails[i].albumId==songAlbum)
-              {
-                album=SongDetails[i].albumTitle;
-              }
-              if(SongDetails[i].artistId==songArtist)
-              {
-                artist=SongDetails[i].artistName;
-              } 
-            }
-            console.log(genre);
-            console.log(album);
-            console.log(artist);
-            const SongDetail={
-              genre: genre,
-              album: album,
-              artist: artist
-            }
-            dispatch(new DispatchAction('SHOW_SONG_DETAILS',{SongDetail}));
+            setSongDetails(song);
             }
           }
         >
@@ -162,22 +163,21 @@ function Songs({ state, dispatch }: SideNavProps): JSX.Element {
 function SongDetails({state,dispatch} : SideNavProps) : JSX.Element{
 
   const SongDetail= state.get('SongDetail');
-  console.log(SongDetail);
   return(
     <Section title="Song Details">
       <div>
       {
-        SongDetail!=undefined ? SongDetail.get('genre') : ""
+        SongDetail!==undefined ? SongDetail.get('genre') : ""
       }
       </div>
       <div>
       {
-        SongDetail!=undefined ? SongDetail.get('album') : ""
+        SongDetail!==undefined ? SongDetail.get('album') : ""
       }
       </div>
       <div>
       {
-        SongDetail!=undefined ? SongDetail.get('artist') : ""
+        SongDetail!==undefined ? SongDetail.get('artist') : ""
       }
       </div>
     </Section>
@@ -187,7 +187,6 @@ function SongDetails({state,dispatch} : SideNavProps) : JSX.Element{
 function Albums({state,dispatch} : SideNavProps) : JSX.Element
 {
   const Albums : List<any> = state.get('Albums',List());
-  console.log(Albums);
   return(
     <Section title="Albums">
       {
@@ -215,7 +214,6 @@ function Albums({state,dispatch} : SideNavProps) : JSX.Element
 function Genres({state,dispatch} : SideNavProps) : JSX.Element
 {
   const Genres : List<any> = state.get('Genres',List());
-  console.log(Genres);
   return(
     <Section title="Genres">
       {

@@ -1,10 +1,7 @@
-import React,{Component, useEffect, useState}  from "react";
+import { useState}  from "react";
 import { Instrument } from "../Instruments"
 import "./Drums.css"
 import * as Tone from 'tone';
-import { Time } from "tone";
-import { Interval } from "tone/build/esm/core/type/Units";
-import { clearInterval } from "timers";
 function Drums()
 {
     const tonePlayers=["/drumsounds/clap.wav","/drumsounds/crash.wav","/drumsounds/open-hihat.wav","/drumsounds/kick.wav","/drumsounds/snare.wav","/drumsounds/closed-hihat.wav"]
@@ -44,28 +41,13 @@ function Drums()
         reverb: 0,
         steroe: 0.5
     }])
-            
-        /*if(playAudio && audio!="")
-        {
-            console.log(tonePlayers[0].loop);
-            tonePlayers[0].playbackRate=1;
-            tonePlayers[0].fadeIn=0;
-            tonePlayers[0].toDestination();
-            tonePlayers[0].autostart=true;
-        audioPlayer.play().then(()=>{
-            setPlayAudio(false);
-        });
-        setPlayAudio(false);
-        }*/
-        //audioPlayer.play();
 
     function ExecuteSound(index: any) : void
     {
-        console.log("play");
         const tonePlayer = new Tone.Player(tonePlayers[index]);
         tonePlayer.autostart=true;
         tonePlayer.playbackRate=properties[index].playBackRate;
-        if(properties[index].volume==0)
+        if(properties[index].volume===0)
         {
             tonePlayer.mute=true;
         }
@@ -74,7 +56,7 @@ function Drums()
             tonePlayer.mute=false;
             tonePlayer.volume.value=properties[index].volume;
         }
-        if(properties[index].reverb!=0)
+        if(properties[index].reverb!==0)
         {
         const Reverb = new Tone.Reverb(properties[index].reverb).toDestination();
         tonePlayer.connect(Reverb);
@@ -95,7 +77,6 @@ function Drums()
                             return(
                                 <div className="padcontainer">
                 <div className="pad"  onClick={()=>{
-                    console.log("Test");
                     ExecuteSound(index);
                 }}>
                     <img className="icon" src={"/icons/"+icon} alt="clap"/>

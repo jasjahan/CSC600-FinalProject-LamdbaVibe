@@ -8,11 +8,7 @@ async function onMessage(msg: any): Promise<any> {
 
   const genres = await DB.runQuery('get_genre');
 
-  console.log('songs Details message');
-
   const SongDetails = albums.concat(artists,genres);
-
-  console.log(SongDetails);
 
   return { SongDetails };
 }

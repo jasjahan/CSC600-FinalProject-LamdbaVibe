@@ -34,7 +34,6 @@ function App() {
         dispatch(new DispatchAction('SET_ALBUMS',{albums})); 
         const {genres} = await send(socket,'get_genres',{});
         dispatch(new DispatchAction('SET_GENRES',{genres}));
-        //console.log(songs);
       },
       () => {
         dispatch(new DispatchAction('DELETE_SOCKET'));

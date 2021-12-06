@@ -1,6 +1,6 @@
 // 3rd party
 import { List, Map } from 'immutable';
-import { DrumsInstrument } from './instruments/Drums';
+import { DrumsInstrument } from './instruments/KshitizSareen';
 import { WindInstruments } from './instruments/sroy97';
 
 // project dependencies

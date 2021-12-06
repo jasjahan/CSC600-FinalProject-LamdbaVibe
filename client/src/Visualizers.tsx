@@ -46,7 +46,7 @@ export function VisualizerContainer({ visualizer }: VisualizerContainerProps) {
   const setup = (p5: P5, canvasParentRef: Element) => {
     const width = window.innerWidth;
     const height = window.innerHeight / 2;
-    if(name != "3D Waveform" && name != "3D Shape" )
+    if(name !== "3D Waveform" && name !== "3D Shape" )
     {
     p5.createCanvas(width, height).parent(canvasParentRef);
     }

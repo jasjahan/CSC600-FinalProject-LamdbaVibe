@@ -80,7 +80,6 @@ function ShowWelcome({ state, dispatch }: PanelProps): JSX.Element {
     >  
       <div className="mw6 lh-copy mb4">
         <Music32 />
-        <input placeholder="Enter Song Title" ></input>
         <div className="f3 fw7 mb2">Welcome to the case study.</div>
         <div className="f4 mb3">
           Select an instrument and a visualizer on the left to serve some fresh beats.
@@ -114,10 +113,17 @@ function ShowSongs({ state, dispatch }: PanelProps) : JSX.Element {
     }).toDestination(),
   );
   
+  const [search,setSearch] = useState("");
 
   const notes = state.get('notes');
 
+  const songs: List<any> = state.get('songs', List());
   useEffect(() => {
+    if(search!=="")
+    {
+      dispatch(new DispatchAction('SEARCH_SONGS',{search,songs}));
+    }
+
     if (notes && synth) {
       let eachNote = notes.split(' ');
       let noteObjs = eachNote.map((note: string, idx: number) => ({
@@ -143,7 +149,7 @@ function ShowSongs({ state, dispatch }: PanelProps) : JSX.Element {
     }
 
     return () => {};
-  }, [notes, synth, dispatch]);
+  }, [notes, synth, search, songs, dispatch]);
 
   const setOscillator = (newType: Tone.ToneOscillatorType) => {
     setSynth(oldSynth => {
@@ -158,6 +164,10 @@ function ShowSongs({ state, dispatch }: PanelProps) : JSX.Element {
 
   const FilteredSongs : List<any> = state.get('FilteredSongs',List());
   return(
+    <div>
+      <input placeholder="Enter Song Title"  value={search} onChange={(value)=>{
+        setSearch(value.target.value);
+      }}></input>
     <div 
     style={{
       display: 'flex',
@@ -170,7 +180,7 @@ function ShowSongs({ state, dispatch }: PanelProps) : JSX.Element {
       }}>
         Songs List
       {
-       FilteredSongs != undefined ?
+       FilteredSongs !== undefined ?
        FilteredSongs.map(song=>{
          return(
            <div
@@ -205,6 +215,7 @@ function ShowSongs({ state, dispatch }: PanelProps) : JSX.Element {
             </div>
         ))}
       </div>
+    </div>
     </div>
   )
 }

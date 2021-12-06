@@ -34,7 +34,8 @@ type DispatchActionType =
   | 'SET_ALBUMS'
   | 'SET_ALBUM_SONGS'
   | 'SET_GENRES'
-  | 'SET_GENRE_SONGS';
+  | 'SET_GENRE_SONGS'
+  | 'SEARCH_SONGS';
 
 export class DispatchAction {
   readonly type: DispatchActionType;
@@ -108,7 +109,6 @@ export function appReducer(state: AppState, action: DispatchAction): AppState {
 
       case 'SET_ALBUMS':{
         let Albums : List<any> = args.get('albums',List());
-        console.log(Albums);
         return state.set('Albums',Albums);
       }
 
@@ -120,7 +120,6 @@ export function appReducer(state: AppState, action: DispatchAction): AppState {
 
       case 'SET_GENRES':{
         let Genres : List<any> = args.get('genres',List());
-        console.log(Genres);
         return state.set('Genres',Genres);
       }
 
@@ -128,6 +127,20 @@ export function appReducer(state: AppState, action: DispatchAction): AppState {
         let Genres : List<any> = args.get('Genres',List());
         let index: number = args.get('index',Number);
         return state.set('FilteredSongs',Genres.get(index).get('songs'));
+      }
+
+      case 'SEARCH_SONGS':{
+        let SearchText : String = args.get('search',String());
+        let songs : List<any> = args.get('songs',List());
+        let FilteredSongs : any[] = [];
+        songs.forEach(song=>{
+          let songTitle : String = song.get('songTitle').toLowerCase().trim();
+          if(songTitle.includes(SearchText.toLowerCase().trim()))
+          {
+            FilteredSongs.push(song);
+          }
+        })
+        return state.set('FilteredSongs',FilteredSongs);
       }
 
       default:

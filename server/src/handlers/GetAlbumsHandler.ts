@@ -17,8 +17,6 @@ async function onMessage(msg: any): Promise<any> {
       album.songs=AlbumSongs;
   })
 
-  console.log(albums);
-
   return { albums };
 }
 

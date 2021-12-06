@@ -3,7 +3,7 @@
     Github Handle: sroy97
  */
 
-import React,{Component, useEffect, useState}  from "react";
+import {useState}  from "react";
 import { Instrument } from "../Instruments";
 import "./WindInstruments.css";
 import * as Tone from 'tone';
@@ -85,10 +85,9 @@ function WindInstrument()
             
     function PlaySound(index: any) : void
     {
-        console.log("play");
         const tonePlayer = new Tone.Player(tonePlayers[index]);
         tonePlayer.autostart=true;
-        if(properties[index].volume==0)
+        if(properties[index].volume===0)
         {
             tonePlayer.mute=true;
         }
@@ -98,14 +97,14 @@ function WindInstrument()
             tonePlayer.volume.value=properties[index].volume;
         }
         
-        if (properties[index].pitch!=0)
+        if (properties[index].pitch!==0)
         {
          // const pitchShift = new Tone.PitchShift({ pitch: -5 }).toMaster();
             const pitch = new Tone.PitchShift(properties[index].pitch).toDestination();
             tonePlayer.connect(pitch);
         }
 
-        if(properties[index].reverb!=0)
+        if(properties[index].reverb!==0)
         {
             const Reverb = new Tone.Reverb(properties[index].reverb).toDestination();
             tonePlayer.connect(Reverb);
@@ -128,10 +127,9 @@ function WindInstrument()
                             return(
                                 <div className="instrumentcontainer">
                 <div className="windinstrument"  onClick={()=>{
-                    console.log("Test");
                     PlaySound(index);
                 }}>
-                    <img className="icon" src={"/WindIcons/"+icon} />
+                    <img className="icon" src={"/WindIcons/"+icon} alt=""/>
                 </div>
                     <label>Volume</label>
                     <input type="range" min="0" max="10" value={properties[index].volume} onChange={(value)=>{

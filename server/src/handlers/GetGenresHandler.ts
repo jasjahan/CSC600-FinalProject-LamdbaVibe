@@ -8,8 +8,6 @@ async function onMessage(msg: any): Promise<any> {
 
   const genres = await DB.runQuery('get_genre');
 
-  console.log(genres);
-
   genres.forEach(genre=>{
       const GenreSongs : any[] = [];
       songs.forEach(song=>{

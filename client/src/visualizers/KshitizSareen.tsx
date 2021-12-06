@@ -26,7 +26,7 @@ export const BarCircleVisualizer = new Visualizer(
         const x = p5.map(i, 0, values.length - 1, 0, width)-width/2;
         const y = (height / 2 + amplitude * height)-height/2;
         // Place vertex
-        if(i%2==0)
+        if(i%2===0)
         {
         p5.translate(x-startx,y-starty,(0.1*i)-startz);
         startz=i*0.1;
