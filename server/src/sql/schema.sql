@@ -70,6 +70,13 @@ INSERT INTO songs
 VALUES
 	(5, 'Los Pollitos Dicen', 'C4 D4 E4 F4 G4 G4 A4 A4 F4 F4 E4 D4 D4 D4 C4 C4', 5, 5, 5, 1);		
 
+INSERT INTO songs
+VALUES
+	(6, 'Itsy Bitsy Spider', 'G4 C4 C4 C4 D4 E4 E4 E4 D4 C4 D4 E4 C4 G4 F4 E4 F4 G4', 6, 6, 6, 1);	
+
+INSERT INTO songs
+VALUES
+	(7, 'Barney Song', 'G4 E4 G4 G4 E4 G4 A4 G4 F4 E4 D4 E4 F4 E4 F4 C4 C4 C4 C4 C4 D4 F4 G4', 7, 7, 7, 1);	
 
 
 
@@ -140,3 +147,33 @@ VALUES
 INSERT INTO artist
 VALUES
 	(5, 'ARTIST : Gallina Pintadita');
+
+
+-- Song 6 Details	
+INSERT INTO genre
+VALUES
+	(6, 'GENRE : Eurodance');
+
+INSERT INTO album
+VALUES
+	(6, 'ALBUM : Happy Hardcore', 1995);
+
+INSERT INTO artist
+VALUES
+	(6, 'ARTIST : Søren Theodore Nystrøm');
+
+
+-- Song 7 Details	
+INSERT INTO genre
+VALUES
+	(7, 'GENRE : Childrens Music');
+
+INSERT INTO album
+VALUES
+	(7, 'ALBUM : Traditional', 1760);
+
+INSERT INTO artist
+VALUES
+	(7, 'ARTIST : Lee Bernstein');
+
+
