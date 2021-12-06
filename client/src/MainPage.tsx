@@ -76,15 +76,14 @@ function ShowWelcome({ state, dispatch }: PanelProps): JSX.Element {
   return (
     <div
       className="absolute right-0 bottom-0 top-0 flex flex-column items-center justify-center"
-      style={{ left: '16rem' }}
-    >  
+      style={{ left: '16rem' }}  >  
       <div className="mw6 lh-copy mb4">
         <Music32 />
         <div className="f3 fw7 mb2">Welcome to the case study.</div>
         <div className="f4 mb3">
           Select an instrument and a visualizer on the left to serve some fresh beats.
         </div>
-        <div className="f5">The UI is yours to design. Express yourself.</div>
+        {/* <div className="f5">The UI is yours to design. Express yourself.</div> */}
         <ShowSongs state={state} dispatch={dispatch}/>
       </div>
     </div>
@@ -176,9 +175,8 @@ function ShowSongs({ state, dispatch }: PanelProps) : JSX.Element {
     }}
     >
       <div style={{
-        marginTop: '1%',
-      }}>
-        Songs List
+        marginTop: '5%',
+      }}>  Songs List
       {
        FilteredSongs !== undefined ?
        FilteredSongs.map(song=>{
@@ -198,9 +196,9 @@ function ShowSongs({ state, dispatch }: PanelProps) : JSX.Element {
 }
 </div> 
 <div style={{
-        marginTop: '1%',
+        marginTop: '5%',
       }}>
-        Oscillators
+        Oscillators List
         {oscillators.map(o => (
           <div
           className="f6 pointer underline items-center no-underline i dim"

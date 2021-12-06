@@ -10,10 +10,6 @@ import { initializeSocket, send } from './Socket';
 
 
 
-
-
-
-
 // css imports
 import 'animate.css';
 
@@ -23,7 +19,7 @@ import 'animate.css';
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, defaultState);
- 
+
   useEffect(() => {
     initializeSocket(
       async socket => {
