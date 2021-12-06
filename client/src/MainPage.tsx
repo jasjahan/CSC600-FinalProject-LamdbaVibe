@@ -177,7 +177,7 @@ function ShowSongs({ state, dispatch }: PanelProps) : JSX.Element {
     >
       <div style={{
         marginTop: '5%',
-      }}>  Songs List
+      }}>  Search Results by Song Tittle
       {
        FilteredSongs !== undefined ?
        FilteredSongs.map(song=>{
