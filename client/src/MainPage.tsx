@@ -165,7 +165,7 @@ function ShowSongs({ state, dispatch }: PanelProps) : JSX.Element {
   const FilteredSongs : List<any> = state.get('FilteredSongs',List());
   return(
     <div>
-      <input placeholder="Enter Song Title"  value={search} onChange={(value)=>{
+      <input  className="input-reset ba b--black-20 pa2 mb2 db w-100" placeholder="Enter Song Title"  value={search} onChange={(value)=>{
         setSearch(value.target.value);
       }}></input>
     <div 
