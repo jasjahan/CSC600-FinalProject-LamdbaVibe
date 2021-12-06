@@ -62,6 +62,14 @@ INSERT INTO songs
 VALUES
 	(3, 'Twinkel Twinkel', 'C4 C4 G4 G4 A4 A4 G4 F4 F4 E4 E4 D4 D4 C4', 3, 3, 3, 1);
 
+INSERT INTO songs
+VALUES
+	(4, 'Mary Had A', 'E4 D4 C4 D4 E4 E4 E4 D4 D4 D4 E4 E4 D4 D4 C4 D4 E4 D4 C4', 4, 4, 4, 1);	
+
+INSERT INTO songs
+VALUES
+	(5, 'Los Pollitos Dicen', 'C4 D4 E4 F4 G4 G4 A4 A4 F4 F4 E4 D4 D4 D4 C4 C4', 5, 5, 5, 1);		
+
 
 
 
@@ -107,14 +115,28 @@ VALUES
 	(3, 'ARTIST : Jane Taylor');
 
 
+-- Song 4 Details
 INSERT INTO genre
 VALUES
-	(4, 'GENRE : Rhyme');
+	(4, 'GENRE : Rock');
 
 INSERT INTO album
 VALUES
-	(4, 'ALBUM : Unknown', 2016);
+	(4, 'ALBUM :Index number of 7622', 1972);
 
 INSERT INTO artist
 VALUES
-	(4, 'ARTIST : Charles);
+	(4, 'ARTIST : Paul McCartney');
+
+-- Song 5 Details	
+INSERT INTO genre
+VALUES
+	(5, 'GENRE : Childrens Music');
+
+INSERT INTO album
+VALUES
+	(5, 'ALBUM :Gallina Pintadita 3', 2020);
+
+INSERT INTO artist
+VALUES
+	(5, 'ARTIST : Gallina Pintadita');
