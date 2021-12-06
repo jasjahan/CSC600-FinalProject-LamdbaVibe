@@ -62,9 +62,9 @@ INSERT INTO songs
 VALUES
 	(3, 'Twinkel Twinkel', 'C4 C4 G4 G4 A4 A4 G4 F4 F4 E4 E4 D4 D4 C4', 3, 3, 3, 1);
 
-INSERT INTO songs
-VALUES
-	(4, 'Twinkel Twinkel', 'C4 C4 G4 G4 A4 A4 G4 F4 F4 E4 E4 D4 D4 C4', 1, 1, 1, 1);
+
+
+
 
 
 --  Song 1 Details
@@ -105,3 +105,16 @@ VALUES
 INSERT INTO artist
 VALUES
 	(3, 'ARTIST : Jane Taylor');
+
+
+INSERT INTO genre
+VALUES
+	(4, 'GENRE : Rhyme');
+
+INSERT INTO album
+VALUES
+	(4, 'ALBUM : Unknown', 2016);
+
+INSERT INTO artist
+VALUES
+	(4, 'ARTIST : Charles);

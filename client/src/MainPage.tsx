@@ -13,6 +13,7 @@ import { VisualizerContainer } from './Visualizers';
 import { List } from 'immutable';
 
 
+
 type PanelProps = {
   state: AppState;
   dispatch: React.Dispatch<DispatchAction>;
